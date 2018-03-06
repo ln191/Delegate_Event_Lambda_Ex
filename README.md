@@ -1,7 +1,7 @@
 # Delegate_shipping_ex
 Demonstrates the use of delegates in C#
 
-##Assignment
+## Assignment
 Create shipping fee calculator: 
 
 	-	Ship the items to different destinations.
@@ -11,7 +11,7 @@ Create shipping fee calculator:
 	Task: 
 	Given a destination and item price, calculate the shipping fee.
 	
-##Zone Details
+## Zone Details
 
 	Zone 1		25%
 	Zone 2		12% is high risk
