@@ -8,10 +8,11 @@ namespace Delegate_shipping_ex
 {
     internal class Program
     {
-        public delegate double shippingTax(int itemPrice);
-
         private static void Main(string[] args)
         {
+            ShippingFeesDelegate theDel;
+            ShippingDestination theDest;
+
             bool exit = false;
             while (!exit)
             {
@@ -22,80 +23,40 @@ namespace Delegate_shipping_ex
                     exit = true;
                     return;
                 }
-                Console.WriteLine("Enter the value of the shipment:");
-                string valueStr = Console.ReadLine();
-                int value = int.Parse(valueStr);
+                //Sets the Shipping destination delegate to the given zone
+                theDest = ShippingDestination.getDestinationInfo(zone);
 
-                shippingTax taxZoneCal = ZoneSelection(zone);
+                if (theDest != null)
+                {
+                    Console.WriteLine("Enter the value of the shipment:");
+                    string valueStr = Console.ReadLine();
+                    decimal itemPrice = decimal.Parse(valueStr);
+                    //Sets the shipping fees delegate to the given destinations calculation method
+                    theDel = theDest.calcFees;
 
-                double fee = taxZoneCal(value);
+                    //if the destination has high risk fee, added to the destination fee
+                    if (theDest.isHighRisk)
+                    {
+                        //Adding Anonymous delegate, to the shipping fee delegate, make it to a composable delegate
+                        theDel += delegate (decimal theprice, ref decimal itemFee)
+                        {
+                            itemFee += 25.0m;
+                        };
+                    }
 
-                Console.WriteLine($"The shipping fee for {zone} is {fee}$");
-                Console.WriteLine();
+                    decimal theFee = 0.0m;
+
+                    //the runs first the clacFee method from given destination then, runs the Anonymous delegate
+                    theDel(itemPrice, ref theFee);
+                    Console.WriteLine($"The shipping fee for {zone} is {theFee}$");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("You have entered an unknown destination, try again");
+                    Console.WriteLine();
+                }
             }
         }
-
-        /// <summary>
-        /// Gets the right tax calculation function to the given zone
-        /// </summary>
-        /// <param name="zone"></param>
-        /// <returns>Delegate tax function</returns>
-        private static shippingTax ZoneSelection(string zone)
-        {
-            shippingTax selectedZone = null;
-            switch (zone)
-            {
-                case "zone1":
-                    selectedZone = ZoneOne;
-                    break;
-
-                case "zone2":
-                    selectedZone = ZoneTwo;
-                    break;
-
-                case "zone3":
-                    selectedZone = ZoneThree;
-                    break;
-
-                case "zone4":
-                    selectedZone = ZoneFour;
-                    break;
-            }
-            return selectedZone;
-        }
-
-        /// <summary>
-        /// Zone 1 25% fee
-        /// </summary>
-        /// <param name="itemPrice"></param>
-        /// <returns></returns>
-        private static double ZoneOne(int itemPrice) => PercentageOf(itemPrice, 25.00);
-
-        /// <summary>
-        /// Zone 2 12% + 25$ fee
-        /// </summary>
-        /// <param name="itemPrice"></param>
-        /// <returns></returns>
-        private static double ZoneTwo(int itemPrice) => PercentageOf(itemPrice, 12.00) + 25;
-
-        /// <summary>
-        /// Zone 3 8%
-        /// </summary>
-        /// <param name="itemPrice"></param>
-        /// <returns></returns>
-        private static double ZoneThree(int itemPrice) => PercentageOf(itemPrice, 8.00);
-
-        /// <summary>
-        /// Zone 4 4% + 25$
-        /// </summary>
-        /// <param name="itemPrice"></param>
-        /// <returns></returns>
-        private static double ZoneFour(int itemPrice) => PercentageOf(itemPrice, 4.00) + 25;
-
-        /// <summary>
-        /// Gets the given percentage amount of the given value
-        /// </summary>
-        /// <returns>Percentage of given value</returns>
-        private static double PercentageOf(int value, double percentage) => (value / 100) * percentage;
     }
 }
