@@ -55,8 +55,56 @@ The code above will output the following
 Result is 400
 Result is 0
 ```
-The delegate variable simple holds a method, and it can be set to hold any method that share the same construct as the created delegate.
+The delegate variable simply holds a method, and it can be set to hold any method that share the same construct as the created delegate.
 In this case the method must return an `int` and take two `int` as parameters. 
 
 ### Delegates is Composable 
-One can add multiple method on to an delegate 	
+One can add multiple method on to an delegate.
+if we modifi the code above to the following 
+```
+...
+myDelegate cal = myPlusFunc;
+
+cal += myMinusFunc;
+
+result = cal(200,200);
+
+Console.WriteLine($"Result is {result}");
+```
+The result will be the following
+```
+Result is 0
+```
+The reason for this, is that when it comes to return methods, only the last method´s `return` value will be returned.
+Also if one of the methods have an exception all other methods will be skipped.
+
+But if we change the code to make the delegate hold `void` methods instead and change the two to void method, we can see that it will run both methods.
+```
+Public delegate void myDelegate(int x, int y);
+
+void myPlusFunc(int x,int y){
+	Console.WriteLine($"Result is {x + y}"); 
+}
+void myMinusFunc(int x,int y){
+	Console.WriteLine($"Result is {x - y}"); 
+}
+
+myDelegate cal = myPlusFunc;
+
+cal += myMinusFunc;
+
+cal(200,200);
+```
+The output will show
+```
+Result is 400
+Result is 0
+```
+One can also remove methods from the delegate by
+```
+cal -= myPlusFunc;
+```
+Then only myMinusFunc will be run by cal delegate.
+All the methods in the delegate will be run in the order in which they where added.
+
+
