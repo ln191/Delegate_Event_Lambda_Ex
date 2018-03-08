@@ -4,12 +4,12 @@ Demonstrates the use of delegates in C#
 ## Assignment
 Create shipping fee calculator: 
 
-	-	Ship the items to different destinations.
-	-	Shipping fees are x% of the given item price.
-	-	Some places have an additional risk fee.
+-	Ship the items to different destinations.
+-	Shipping fees are x% of the given item price.
+-	Some places have an additional risk fee.
 	
-	Task: 
-	Given a destination and item price, calculate the shipping fee.
+Task: 
+Given a destination and item price, calculate the shipping fee.
 	
 ## Zone Details
 
@@ -23,10 +23,10 @@ Create shipping fee calculator:
 ## Delegate info
 Delegate can best be described as a placeholder for functions.
 
-	- Works like C++ pointers
-	- Can be dynamically switched at runtime
-	- Can be used to implement [callback functions](http://www.c-sharpcorner.com/UploadFile/1c8574/delegate-used-for-callback-operation/)
-	- They are Type safe
+- Works like C++ pointers
+- Can be dynamically switched at runtime
+- Can be used to implement [callback functions](http://www.c-sharpcorner.com/UploadFile/1c8574/delegate-used-for-callback-operation/).
+- They are Type safe
 ### Delegate Ex
 ```
 Public delegate int myDelegate(int x, int y);
@@ -37,11 +37,17 @@ int myPlusFunc(int x,int y){
 int myMinusFunc(int x,int y){
 	return x - y;
 }
+
 myDelegate cal = myPlusFunc;
+
 int result = cal(200,200);
+
 Console.WriteLine($"Result is {result}");
+
 cal = myMinusFunc;
+
 result = cal(200,200);
+
 Console.WriteLine($"Result is {result}");
 ```
 The code above will output the following
