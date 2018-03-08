@@ -37,18 +37,19 @@ int myPlusFunc(int x,int y){
 int myMinusFunc(int x,int y){
 	return x - y;
 }
+Main{
+	myDelegate cal = myPlusFunc;
 
-myDelegate cal = myPlusFunc;
+	int result = cal(200,200);
 
-int result = cal(200,200);
+	Console.WriteLine($"Result is {result}");
 
-Console.WriteLine($"Result is {result}");
+	cal = myMinusFunc;
 
-cal = myMinusFunc;
+	result = cal(200,200);
 
-result = cal(200,200);
-
-Console.WriteLine($"Result is {result}");
+	Console.WriteLine($"Result is {result}");
+}
 ```
 The code above will output the following
 ```
@@ -60,7 +61,7 @@ In this case the method must return an `int` and take two `int` as parameters.
 
 ### Delegates is Composable 
 One can add multiple method on to an delegate.
-if we modifi the code above to the following 
+if we modify the code above to the following 
 ```
 ...
 myDelegate cal = myPlusFunc;
@@ -78,7 +79,7 @@ Result is 0
 The reason for this, is that when it comes to return methods, only the last method´s `return` value will be returned.
 Also if one of the methods have an exception all other methods will be skipped.
 
-But if we change the code to make the delegate hold `void` methods instead and change the two to void method, we can see that it will run both methods.
+But if we change the code to make the delegate hold `void` methods instead and change the two myFunc to void method, we can see that it will run both methods.
 ```
 Public delegate void myDelegate(int x, int y);
 
@@ -89,11 +90,13 @@ void myMinusFunc(int x,int y){
 	Console.WriteLine($"Result is {x - y}"); 
 }
 
-myDelegate cal = myPlusFunc;
+Main{
+	myDelegate cal = myPlusFunc;
 
-cal += myMinusFunc;
+	cal += myMinusFunc;
 
-cal(200,200);
+	cal(200,200);
+}
 ```
 The output will show
 ```
@@ -107,4 +110,32 @@ cal -= myPlusFunc;
 Then only myMinusFunc will be run by cal delegate.
 All the methods in the delegate will be run in the order in which they where added.
 
+### Use of Ref
+In order to take better advantage composable delegates, one can use [ref](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref) to pass result from method to another.
+```
+Public delegate void myDelegate(int x, int y, ref int res);
+
+void myPlusFunc(int x,int y, ref int res){
+	res += (x + y);
+}
+void myMinusFunc(int x,int y, ref int res){
+	res += (x - y);
+}
+
+Main{
+	int result = 0;
+
+	myDelegate cal = myPlusFunc;
+	cal += myMinusFunc;
+	cal(100,50,result);
+	Console.WriteLine($"Result is {result}");
+}
+```
+The code above will output the following
+```
+Result is 200
+```
+First is the `myPlusFunc` run and adds 100 + 50 to the result which is is the `ref` variable which currently 0, then `myMinusFunc` will be run, which adds 100 - 50 to result which had been set to 150 by the previous method. So when we write the result to the screen it will show 200.
+
+### Anonymous Delegates
 
