@@ -110,8 +110,8 @@ cal -= myPlusFunc;
 Then only myMinusFunc will be run by cal delegate.
 All the methods in the delegate will be run in the order in which they where added.
 
-### Use of Ref
-In order to take better advantage composable delegates, one can use [ref](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref) to pass result from method to another.
+### Use of Ref parameters 
+In order to take better advantage of composed delegates, one can use [ref](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/ref) to pass result from one method to another.
 ```
 Public delegate void myDelegate(int x, int y, ref int res);
 
@@ -138,4 +138,10 @@ Result is 200
 First is the `myPlusFunc` run and adds 100 + 50 to the result which is is the `ref` variable which currently 0, then `myMinusFunc` will be run, which adds 100 - 50 to result which had been set to 150 by the previous method. So when we write the result to the screen it will show 200.
 
 ### Anonymous Delegates
+Instead of making a method to but into a delegate, one can add a delegate method directly. 
+```
+cal += delegate(int x, int y, ref int result){
+	result += (x*y)
+	};
+```
 
