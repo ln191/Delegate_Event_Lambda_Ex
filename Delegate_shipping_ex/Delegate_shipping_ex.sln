@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_shipping_ex", "Del
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBalance_ex", "..\BankBalance_ex\BankBalance_ex.csproj", "{A76CCBC6-454D-4801-A3D1-A4EDB9C705CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankBalance_Lambda_version", "..\BankBalance_Lambda_version\BankBalance_Lambda_version.csproj", "{66403BE6-CAD0-4F85-90BA-95108E299B6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A76CCBC6-454D-4801-A3D1-A4EDB9C705CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A76CCBC6-454D-4801-A3D1-A4EDB9C705CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A76CCBC6-454D-4801-A3D1-A4EDB9C705CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66403BE6-CAD0-4F85-90BA-95108E299B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66403BE6-CAD0-4F85-90BA-95108E299B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66403BE6-CAD0-4F85-90BA-95108E299B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66403BE6-CAD0-4F85-90BA-95108E299B6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
