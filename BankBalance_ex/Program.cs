@@ -16,6 +16,7 @@ namespace BankBalance_ex
             BalanceLogger log = new BalanceLogger();
             BalanceWatcher watch = new BalanceWatcher();
 
+            //adds the other delegate method to balanceChanged event
             acc.balanceChanged += log.balanceLog;
             acc.balanceChanged += watch.balanceWatch;
 
