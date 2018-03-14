@@ -14,7 +14,7 @@ Given a deposit value (positive or negative), return current balance and tell if
 ## Event info
 Event is a way to execute specific code in response to a given change or triggered, without having the code keep track of when the change occurs. The event will message the code, that it has been trigger and should be run.     
 
-- Based on [delegates](../Delegate_shipping_ex)
+- Based on [delegates](../Delegate_shipping_ex#delegate-info)
 - Enable Async communication
 - Can be switch on and off as needed
 - Can create custom events
