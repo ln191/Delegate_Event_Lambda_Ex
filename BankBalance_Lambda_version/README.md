@@ -3,7 +3,7 @@ Refactor the bankBalance program to use lambda.
 
 # Lambda Info
 Lambda is a way of writing anonymous functions.
-- It´s based on [delegates](../Delegate_shipping_ex)
+- It´s based on [delegates](../Delegate_shipping_ex#delegate-info)
 - It´s used when a function is short and can be in one or two lines of code
 - It´s makes the code easier to read
 - Lambda is defined using `=>` operator
