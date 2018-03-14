@@ -42,3 +42,5 @@ This is and example of a statement Lambda
 ```
 You can tell it is a statement lambda, since the rigth side is encapsulated in `{}`. 
 Inside them are two statements run with the parameter given on the left side.
+
+The `()` on the left side is optional, you can also just say `x,y =>`
