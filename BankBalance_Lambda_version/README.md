@@ -41,4 +41,4 @@ This is and example of a statement Lambda
 	}
 ```
 You can tell it is a statement lambda, since the rigth side is encapsulated in `{}`. 
-Inside them are to statements run with the parameter given on the left side.
+Inside them are two statements run with the parameter given on the left side.
