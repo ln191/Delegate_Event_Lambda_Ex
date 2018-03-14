@@ -7,7 +7,7 @@ Lambda is a way of writing anonymous functions.
 - It´s used when a function is short and can be in one or two lines of code
 - It´s makes the code easier to read
 - Lambda is defined using `=>` operator
-- There are two type of Lambda expresions
+- There are two types of Lambda expresions
 	- Expression Lambda 
 	- Statement Lambda
 
@@ -33,10 +33,12 @@ f(10);
 The result is 100
 
 ## Statement Lambda
-
+This is and example of a statement Lambda
 ```
 (x,y) => {
 	Func1(x);
 	Func2(y);
 	}
 ```
+You can tell it is a statement lambda, since the rigth side is encapsulated in `{}`. 
+Inside them are to statements run with the parameter given on the left side.
